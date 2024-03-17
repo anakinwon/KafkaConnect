@@ -1,0 +1,1 @@
+/usr/bin/http POST http://localhost:8083/connectors @/home/anakin/connector_configs/cdc_source_configs/$1
