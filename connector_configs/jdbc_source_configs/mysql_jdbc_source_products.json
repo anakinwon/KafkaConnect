@@ -5,7 +5,7 @@
         "tasks.max": "1",
         "connection.url": "jdbc:mysql://localhost:3306/om",
         "connection.user": "connect_dev",
-        "connection.password": "connect_dev",
+        "connection.password": "1111",
 
         "topic.prefix": "mysql_jdbc_",
         "catalog.pattern": "om", 
