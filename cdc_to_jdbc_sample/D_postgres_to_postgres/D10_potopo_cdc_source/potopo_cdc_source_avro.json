@@ -1,0 +1,38 @@
+{
+    "name": "potopo_cdc_source_avro",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "localhost",
+        "database.port": "5432",
+        "database.user": "connect_dev",
+        "database.password": "1111",
+        "database.dbname": "oc",
+        "database.server.name": "potopoavro",
+
+        "plugin.name": "pgoutput",
+        "slot.name": "debezium_01",
+
+        "schema.include_list": "public",
+        "table.include.list": "public.customers, public.products, public.orders, public.order_items",
+
+        "database.history.kafka.bootstrap.servers": "localhost:9092",
+        "database.history.kafka.topic": "schema-changes.mysql.oc",
+
+        "time.precision.mode": "connect",
+        "database.connectionTimezone": "Asia/Seoul",
+
+        "key.converter": "io.confluent.connect.avro.AvroConverter",
+        "value.converter": "io.confluent.connect.avro.AvroConverter",
+        "key.converter.schema.registry.url": "http://localhost:8081",
+        "value.converter.schema.registry.url": "http://localhost:8081",
+
+        
+        "transforms": "rename_topic, unwrap",
+        "transforms.rename_topic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+        "transforms.rename_topic.regex": "(.*)\\.(.*)\\.(.*)",
+        "transforms.rename_topic.replacement": "$1-$2-$3",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false"
+
+    }
+}
