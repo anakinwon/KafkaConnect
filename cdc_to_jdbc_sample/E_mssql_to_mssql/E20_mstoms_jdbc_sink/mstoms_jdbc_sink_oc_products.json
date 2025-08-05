@@ -1,0 +1,33 @@
+{
+  "name": "mstoms_jdbc_sink_oc_products",
+  "config": {
+    "connector.class":  "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": 1,
+    "connection.url": "jdbc:sqlserver://192.168.56.101;Trusted_connection=yes;databaseName=oc_sink",
+    "connection.user": "sa",
+    "connection.password": "SQLServer!@1234",
+    "insert.mode": "upsert",
+    "delete.enabled":  true,
+    "topics": "oc_dbo_products",
+    "table.name.format": "products_sink",
+    "pk.fields": "product_id",
+    "fields.whitelist": "product_id,product_name,product_category,unit_price",
+    "pk.mode": "record_key",
+    "auto.create": false,
+    "auto.evolve": false,
+    "max.retries": 3,
+
+    "db.timezone": "UTC",
+    "transforms": "convertTS",
+
+    "transforms.convertTS.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+    "transforms.convertTS.field": "order_datetime",
+    "transforms.convertTS.format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
+    "transforms.convertTS.target.type": "Timestamp",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.schema.registry.url": "http://localhost:8081"
+  }
+}
