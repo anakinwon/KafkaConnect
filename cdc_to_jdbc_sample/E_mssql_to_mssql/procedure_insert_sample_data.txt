@@ -1,0 +1,44 @@
+
+CREATE OR ALTER PROCEDURE PROC_MAKE_DATA
+   @P_CNT INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @i INT = 1;
+    DECLARE @V_PRD_INQIRE_DTM DATETIME;
+    DECLARE @V_PRD_CD VARCHAR(30);
+
+    WHILE @i <= @P_CNT
+    BEGIN
+        -- 랜덤 시간: 현재 시간으로부터 -0~10일 사이
+        SET @V_PRD_INQIRE_DTM = DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 10, GETDATE());
+
+        -- 랜덤 상품 코드: PRD00001 ~ PRD99999
+        SET @V_PRD_CD = 'PRD' + RIGHT('00000' + CAST(ABS(CHECKSUM(NEWID())) % 99999 + 1 AS VARCHAR), 5);
+
+
+		insert into oc.dbo.customers (customer_id, email_address, full_name)
+			values
+		(@i, 'test_01@test.com', 'test_name_01');
+
+		insert into oc.dbo.products (product_id, product_name, product_category, unit_price)
+			values
+		(@i, @V_PRD_CD,'kind_01', 10000);
+
+		insert into oc.dbo.orders (order_id, order_datetime, customer_id, order_status, store_id)
+			values
+		(@i, @V_PRD_INQIRE_DTM, @i, '주문완료', 100);
+
+		insert into oc.dbo.order_items (order_id, line_item_id, product_id, unit_price, quantity)
+			values
+		(@i, @i, @i, 30000, 1);
+
+        SET @i += 1;
+    END
+END;
+
+
+
+-- 실행하기
+-- EXEC DBO.PROC_MAKE_DATA 1000;
