@@ -1,5 +1,5 @@
 {
-  "name": "mstoms_jdbc_sink_oc_products",
+  "name": "mstopo_jdbc_oc_sink_avro_products",
   "config": {
     "connector.class":  "io.confluent.connect.jdbc.JdbcSinkConnector",
     "tasks.max": 1,

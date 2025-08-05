@@ -1,5 +1,5 @@
 {
-  "name": "mstoms_jdbc_sink_oc_orders",
+  "name": "mstopo_jdbc_oc_sink_avro_order_items",
   "config": {
     "connector.class":  "io.confluent.connect.jdbc.JdbcSinkConnector",
     "tasks.max": 1,
@@ -8,10 +8,10 @@
     "connection.password": "SQLServer!@1234",
     "insert.mode": "upsert",
     "delete.enabled":  true,
-    "topics": "oc_dbo_orders",
-    "table.name.format": "orders_sink",
-    "pk.fields": "order_id",
-    "fields.whitelist": "order_id,order_datetime,customer_id,order_status,store_id",
+    "topics": "oc_dbo_order_items",
+    "table.name.format": "order_items_sink",
+    "pk.fields": "order_id,line_item_id",
+    "fields.whitelist": "order_id,line_item_id,product_id,unit_price,quantity",
     "pk.mode": "record_key",
     "auto.create": false,
     "auto.evolve": false,
@@ -21,7 +21,7 @@
     "transforms": "convertTS",
 
     "transforms.convertTS.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
-    "transforms.convertTS.field": "order_datetime",
+    "transforms.convertTS.field": "CREAT_DTM,UPDT_DTM",
     "transforms.convertTS.format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
     "transforms.convertTS.target.type": "Timestamp",
 

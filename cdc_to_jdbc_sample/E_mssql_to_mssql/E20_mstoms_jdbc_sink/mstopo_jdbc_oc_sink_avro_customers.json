@@ -1,17 +1,17 @@
 {
-  "name": "mstoms_jdbc_sink_oc_order_items",
+  "name": "mstopo_jdbc_oc_sink_avro_customers",
   "config": {
     "connector.class":  "io.confluent.connect.jdbc.JdbcSinkConnector",
     "tasks.max": 1,
-    "connection.url": "jdbc:sqlserver://192.168.56.101;Trusted_connection=yes;databaseName=oc_sink",
+    "connection.url": "jdbc:sqlserver://localhost;Trusted_connection=yes;databaseName=oc_sink",
     "connection.user": "sa",
     "connection.password": "SQLServer!@1234",
     "insert.mode": "upsert",
     "delete.enabled":  true,
-    "topics": "oc_dbo_order_items",
-    "table.name.format": "order_items_sink",
-    "pk.fields": "order_id,line_item_id",
-    "fields.whitelist": "order_id,line_item_id,product_id,unit_price,quantity",
+    "topics": "oc_dbo_customers",
+    "table.name.format": "customers_sink",
+    "pk.fields": "customer_id",
+    "fields.whitelist": "customer_id,email_address,full_name",
     "pk.mode": "record_key",
     "auto.create": false,
     "auto.evolve": false,
@@ -21,7 +21,7 @@
     "transforms": "convertTS",
 
     "transforms.convertTS.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
-    "transforms.convertTS.field": "CREAT_DTM,UPDT_DTM",
+    "transforms.convertTS.field": "order_datetime",
     "transforms.convertTS.format": "yyyy-MM-dd'T'HH:mm:ss'Z'",
     "transforms.convertTS.target.type": "Timestamp",
 
