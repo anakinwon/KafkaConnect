@@ -1,0 +1,38 @@
+{
+  "name": "mstopo_cdc_source_avro",
+  "config": {
+    "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+    "tasks.max": 1,
+    "database.hostname": "localhost",
+    "database.port": "1433",
+    "database.user": "sa",
+    "database.password": "SQLServer!@1234",
+    "database.dbname": "oc",
+    "table.include.list": "dbo.customers,dbo.products,dbo.orders,dbo.order_items",
+    "database.server.name": "oc",
+    "database.history.kafka.bootstrap.servers": "localhost:9092",
+    "database.history.kafka.topic": "schema-changes.mstopo_oc",
+
+    "database.allowPublicKeyRetrieval": "true",
+
+    "time.precision.mode": "connect",
+    "database.connectionTimeZone": "UTC",
+
+    "database.allowPublicKeyRetrieval": "true",
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.schema.registry.url": "http://localhost:8081",
+
+    "transforms": "rename_topic, unwrap",
+    "transforms.rename_topic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.rename_topic.regex": "(.*)\\.(.*)\\.(.*)",
+    "transforms.rename_topic.replacement": "$1_$2_$3",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false"
+  }
+}
