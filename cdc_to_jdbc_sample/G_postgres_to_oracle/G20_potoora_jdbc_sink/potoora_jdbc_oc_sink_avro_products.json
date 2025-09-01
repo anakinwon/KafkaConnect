@@ -1,0 +1,26 @@
+{
+  "name": "potoora_jdbc_oc_sink_avro_products",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "potooraavro-public-products",
+
+    "connection.url": "jdbc:oracle:thin:@//192.168.56.1:1521/ORA19C",
+    "connection.user": "hr",
+    "connection.password": "elql4$4$",
+
+    "table.name.format": "products_sink",
+    "insert.mode": "upsert",
+    "pk.fields": "product_id",
+    "pk.mode": "record_key",
+    "delete.enabled": "true",
+
+    "auto.create": "true",
+    "auto.evolve": "true",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.schema.registry.url": "http://localhost:8081"
+  }
+}
