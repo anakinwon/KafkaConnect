@@ -1,0 +1,39 @@
+{
+  "name": "oratoora_cdc_source_avro",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+
+    "database.hostname": "192.168.56.1",
+    "database.port": "1521",
+    "database.user": "HR",
+    "database.password": "elql4$4$",
+
+    "database.dbname": "ORA19C",
+    "database.server.name": "oratooraavro",
+
+    "schema.include.list": "HR",
+    "table.include.list": "HR.CUSTOMERS, HR.PRODUCTS, HR.ORDERS, HR.ORDER_ITEMS",
+
+    "database.history.kafka.bootstrap.servers": "localhost:9092",
+    "database.history.kafka.topic": "schema-changes.oracle.HR",
+
+    "database.connection.adapter": "logminer",
+    "database.oracle.version": "19",
+
+    "time.precision.mode": "connect",
+    "database.connectionTimeZone": "UTC",
+
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.schema.registry.url": "http://localhost:8081",
+
+    "transforms": "rename_topic, unwrap",
+    "transforms.rename_topic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.rename_topic.regex": "(.*)\\.(.*)\\.(.*)",
+    "transforms.rename_topic.replacement": "$1-$2-$3",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true"
+  }
+}
