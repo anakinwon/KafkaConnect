@@ -96,7 +96,7 @@ SELECT * FROM ORDER_ITEMS_SINK;
 /* 벌크 테스트 데이터 생성 ********************************************************************************************** */
 CREATE OR REPLACE PROCEDURE GENERATE_SAMPLE_DATA (
     p_customer_cnt IN NUMBER,  -- 고객 수 (예: 10000)
-    p_product_cnt  IN NUMBER,  -- 상품 수 (예: 5000)
+    p_product_cnt  IN NUMBER,  -- 상품 수 (예:  5000)
     p_order_cnt    IN NUMBER   -- 주문 수 (예: 10000)
 ) IS
 BEGIN
