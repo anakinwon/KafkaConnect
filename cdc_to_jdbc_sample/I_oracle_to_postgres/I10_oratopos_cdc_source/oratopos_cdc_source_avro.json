@@ -33,12 +33,15 @@
     "key.converter.schema.registry.url": "http://localhost:8081",
     "value.converter.schema.registry.url": "http://localhost:8081",
 
+    "key.converter.schemas.enable": true,
     "transforms": "rename_topic, unwrap",
     "transforms.rename_topic.type": "org.apache.kafka.connect.transforms.RegexRouter",
     "transforms.rename_topic.regex": "(.*)\\.(.*)\\.(.*)",
     "transforms.rename_topic.replacement": "$1-$2-$3",
     "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
-    "transforms.unwrap.drop.tombstones": "true"
+    "transforms.unwrap.drop.tombstones": "true",
+    "transforms.unwrap.delete.handling.mode": "rewrite",
+    "transforms.unwrap.add.fields": "op,table,source.ts_ms"
 
   }
 }
