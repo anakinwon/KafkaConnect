@@ -11,8 +11,8 @@
 
     "table.name.format": "PRODUCTS_SINK",
     "insert.mode": "upsert",
-    "pk.fields": "PRODUCT_ID",
     "pk.mode": "record_key",
+    "pk.fields": "PRODUCT_ID",
     "delete.enabled": "true",
 
     "auto.create": "true",

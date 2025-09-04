@@ -20,11 +20,11 @@ CREATE TABLE PRODUCTS (
 ) ;
 
 CREATE TABLE ORDERS (
-	  ORDER_ID       INT         NOT NULL PRIMARY KEY
-    , ORDER_DATETIME DATETIME    NOT NULL
-    , CUSTOMER_ID    INT         NOT NULL
+	  ORDER_ID       INT          NOT NULL PRIMARY KEY
+    , ORDER_DATETIME DATE         NOT NULL
+    , CUSTOMER_ID    INT          NOT NULL
     , ORDER_STATUS   VARCHAR2(10) NOT NULL
-    , STORE_ID       INT         NOT NULL
+    , STORE_ID       INT          NOT NULL
 ) ;
 
 CREATE TABLE ORDER_ITEMS (
@@ -37,15 +37,7 @@ CREATE TABLE ORDER_ITEMS (
 ) ;
 
 
-SELECT * FROM CUSTOMERS;
-SELECT * FROM PRODUCTS;
-SELECT * FROM ORDERS;
-SELECT * FROM ORDER_ITEMS;
 /* Source 테이블 신규 생성 ********************************************************************************************* */
-
-
-
-
 
 
 
@@ -86,10 +78,17 @@ CREATE TABLE ORDER_ITEMS_SINK (
 ) ;
 
 
+
+SELECT * FROM CUSTOMERS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM ORDERS;
+SELECT * FROM ORDER_ITEMS;
+
 SELECT * FROM CUSTOMERS_SINK;
 SELECT * FROM PRODUCTS_SINK;
 SELECT * FROM ORDERS_SINK;
 SELECT * FROM ORDER_ITEMS_SINK;
+
 /* Sink 테이블 신규 생성 *********************************************************************************************** */
 
 

@@ -11,8 +11,8 @@
 
     "table.name.format": "CUSTOMERS_SINK",
     "insert.mode": "upsert",
-    "pk.fields": "CUSTOMER_ID",
     "pk.mode": "record_key",
+    "pk.fields": "CUSTOMER_ID",
     "delete.enabled": "true",
 
     "auto.create": "true",

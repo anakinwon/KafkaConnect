@@ -11,8 +11,8 @@
 
     "table.name.format": "ORDER_ITEMS_SINK",
     "insert.mode": "upsert",
-    "pk.fields": "ORDER_ID, LINE_ITEM_ID",
     "pk.mode": "record_key",
+    "pk.fields": "ORDER_ID, LINE_ITEM_ID",
     "delete.enabled": "true",
 
     "auto.create": "true",
