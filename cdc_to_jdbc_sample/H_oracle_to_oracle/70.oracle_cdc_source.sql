@@ -121,7 +121,7 @@ BEGIN
                 WHEN 1 THEN 'Electronics'
                 ELSE 'Clothing'
             END,
-            ROUND(DBMS_RANDOM.VALUE(1000, 10000), 0) -- 1000~10000 사이 가격
+            ROUND(DBMS_RANDOM.VALUE(10, 10000), 0)*100 -- 1000~1000000 사이 가격
         );
     END LOOP;
 

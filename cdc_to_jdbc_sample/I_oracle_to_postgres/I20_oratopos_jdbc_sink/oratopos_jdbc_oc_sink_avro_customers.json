@@ -10,15 +10,22 @@
         "table.name.format": "customers_sink",
 
         "insert.mode": "upsert",
+
         "pk.mode": "record_key",
         "pk.fields": "customer_id",
         "delete.enabled": "true",
-
+        "auto.create": "true",
         "auto.evolve": "true",
 
         "key.converter": "io.confluent.connect.avro.AvroConverter",
         "value.converter": "io.confluent.connect.avro.AvroConverter",
         "key.converter.schema.registry.url": "http://localhost:8081",
-        "value.converter.schema.registry.url": "http://localhost:8081"
+        "value.converter.schema.registry.url": "http://localhost:8081",
+
+        "transforms": "lowercaseKey,lowercaseValue",
+        "transforms.lowercaseKey.type": "org.apache.kafka.connect.transforms.ReplaceField$Key",
+        "transforms.lowercaseKey.renames": "CUSTOMER_ID:customer_id",
+        "transforms.lowercaseValue.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.lowercaseValue.renames": "CUSTOMER_ID:customer_id,EMAIL_ADDRESS:email_address,FULL_NAME:full_name"
     }
 }
