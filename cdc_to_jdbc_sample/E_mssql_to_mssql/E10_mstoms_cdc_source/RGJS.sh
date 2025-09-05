@@ -1,0 +1,1 @@
+/usr/bin/http POST http://localhost:8083/connectors @/home/anakin/connector_configs/E_mssql_to_mssql/E10_mstoms_cdc_source/$1

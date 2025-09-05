@@ -1,0 +1,1 @@
+/usr/bin/http POST http://localhost:8083/connectors @/home/anakin/connector_configs/E_mssql_to_mssql/E20_mstoms_jdbc_sink/$1

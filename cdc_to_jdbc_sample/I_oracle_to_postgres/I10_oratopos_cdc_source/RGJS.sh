@@ -1,0 +1,1 @@
+/usr/bin/http POST http://localhost:8083/connectors @/home/anakin/connector_configs/I_oracle_to_postgres/I10_oratopos_cdc_source/$1

@@ -1,0 +1,1 @@
+/usr/bin/http POST http://localhost:8083/connectors @/home/anakin/connector_configs/F_mssql_to_postgres/F20_mstopo_jdbc_sink/$1

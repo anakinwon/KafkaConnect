@@ -1,0 +1,4 @@
+RGJS.sh oratoora_jdbc_oc_sink_avro_orders.json
+RGJS.sh oratoora_jdbc_oc_sink_avro_customers.json
+RGJS.sh oratoora_jdbc_oc_sink_avro_products.json
+RGJS.sh oratoora_jdbc_oc_sink_avro_order_items.json
